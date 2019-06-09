@@ -6,14 +6,18 @@ namespace ConsoleApp18
     {
         unsafe static void Main(string[] args)
         {
+            // create an object that will be concurrently manipulated by several threads.
             SomeObject obj = new SomeObject();
 
+            // Create two threads to manipulate the object.
             Thread t1 = new Thread(ThreadProc);
             Thread t2 = new Thread(ThreadProc);
 
+            // Start them
             t1.Start(obj);
             t2.Start(obj);
 
+            // Wait for each thread to complete.
             t1.Join();
             t2.Join();
 
