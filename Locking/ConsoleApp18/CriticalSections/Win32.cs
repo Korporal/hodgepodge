@@ -7,18 +7,7 @@ using System.Threading.Tasks;
 
 namespace CriticalSections
 {
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct CRITICAL_SECTION
-    {
-        public IntPtr DebugInfo;
-        public int LockCount;
-        public int RecursionCount;
-        public IntPtr OwningThread;
-        public IntPtr LockSemaphore;
-        public IntPtr SpinCount;
-    }
-
-    public unsafe static class Native
+    public unsafe static class Win32
     {
         [DllImport("kernel32")]
         public static extern void InitializeCriticalSection(CRITICAL_SECTION* CriticalSection);
@@ -28,6 +17,5 @@ namespace CriticalSections
 
         [DllImport("kernel32")]
         public static extern void LeaveCriticalSection(CRITICAL_SECTION* CriticalSection);
-
     }
 }

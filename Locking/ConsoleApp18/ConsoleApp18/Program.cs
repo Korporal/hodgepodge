@@ -43,17 +43,17 @@ namespace ConsoleApp18
 
         protected ThreadSafeObject()
         {
-            fixed (CRITICAL_SECTION* section_ptr = &section) { Native.InitializeCriticalSection(section_ptr); }
+            fixed (CRITICAL_SECTION* section_ptr = &section) { Win32.InitializeCriticalSection(section_ptr); }
         }
 
         protected void Lock()
         {
-            fixed (CRITICAL_SECTION* section_ptr = &section) { Native.EnterCriticalSection(section_ptr); }
+            fixed (CRITICAL_SECTION* section_ptr = &section) { Win32.EnterCriticalSection(section_ptr); }
         }
 
         protected void Unlock()
         {
-            fixed (CRITICAL_SECTION* section_ptr = &section) { Native.LeaveCriticalSection(section_ptr); }
+            fixed (CRITICAL_SECTION* section_ptr = &section) { Win32.LeaveCriticalSection(section_ptr); }
         }
     }
 
