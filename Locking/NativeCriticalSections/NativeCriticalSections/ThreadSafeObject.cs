@@ -1,6 +1,6 @@
 ﻿using CriticalSections;
 
-namespace ConsoleApp18
+namespace NativeCriticalSections
 {
     public abstract unsafe class ThreadSafeObject
     {

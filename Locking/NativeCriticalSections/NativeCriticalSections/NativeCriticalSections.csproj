@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D1F958BE-9E47-445D-B529-B96E395EF716}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleApp18</RootNamespace>
-    <AssemblyName>ConsoleApp18</AssemblyName>
+    <RootNamespace>NativeCriticalSections</RootNamespace>
+    <AssemblyName>NativeCriticalSections</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

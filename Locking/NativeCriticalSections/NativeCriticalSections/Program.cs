@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace ConsoleApp18
+namespace NativeCriticalSections
 {
     class Program
     {
