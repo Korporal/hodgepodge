@@ -17,7 +17,7 @@ namespace ConsoleApp18
             t1.Join();
             t2.Join();
 
-        }
+        } // put a breakpoint here and examine 'obj'
 
         public static void ThreadProc(object instance)
         {
