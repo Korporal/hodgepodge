@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeCriticalSections", "ConsoleApp18\NativeCriticalSections.csproj", "{D1F958BE-9E47-445D-B529-B96E395EF716}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeCriticalSections", "NativeCriticalSections\NativeCriticalSections.csproj", "{D1F958BE-9E47-445D-B529-B96E395EF716}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CriticalSections", "CriticalSections\CriticalSections.csproj", "{F7B6B6D9-D4DC-45CB-8607-65FC1F08CF03}"
 EndProject
