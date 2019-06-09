@@ -20,7 +20,8 @@ namespace ConsoleApp18
             t1.Start(obj);
             t2.Start(obj);
 
-            Thread.Sleep(100000);
+            t1.Join();
+            t2.Join();
 
         }
 
@@ -37,35 +38,19 @@ namespace ConsoleApp18
 
     }
 
-    public abstract unsafe class ThreadSafeObject
-    {
-        private CRITICAL_SECTION section;
-
-        protected ThreadSafeObject()
-        {
-            fixed (CRITICAL_SECTION* section_ptr = &section) { Win32.InitializeCriticalSection(section_ptr); }
-        }
-
-        protected void Lock()
-        {
-            fixed (CRITICAL_SECTION* section_ptr = &section) { Win32.EnterCriticalSection(section_ptr); }
-        }
-
-        protected void Unlock()
-        {
-            fixed (CRITICAL_SECTION* section_ptr = &section) { Win32.LeaveCriticalSection(section_ptr); }
-        }
-    }
-
     public class SomeObject : ThreadSafeObject
     {
-        public int count = 0;
+        public int count_1 = 0;
+        public int count_2 = 0;
+        public int count_3 = 0;
 
         public void ChangeMyState()
         {
-            //Lock();
-            count++;
-            //Unlock();
+            LockMe();
+            count_1++;
+            count_2++;
+            count_3++;
+            UnlockMe();
         }
     }
 }
