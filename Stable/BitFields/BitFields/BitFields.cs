@@ -49,27 +49,21 @@ namespace Steadsoft.BitFields
         {
             get
             {
-                if (value == 0)
+                if (value == Byte.MinValue)
                     return 0;
 
-                if (value == MAX_BIT_NUMBER)
-                    return (Byte)MAX_BIT_NUMBER;
+                if (value == Byte.MaxValue)
+                    return (Byte)MAX_BIT_NUMBER+1;
 
                 return BitCount(true);
             }
         }
 
-        public Byte BitOff
+        public Byte BitsOff
         {
             get
             {
-                if (value == 0)
-                    return (Byte)MAX_BIT_NUMBER;
-
-                if (value == MAX_BIT_NUMBER)
-                    return 0;
-
-                return BitCount(false);
+                return (byte)((MAX_BIT_NUMBER + 1) - BitsOn);
             }
         }
 
@@ -134,27 +128,21 @@ namespace Steadsoft.BitFields
         {
             get
             {
-                if (value == 0)
+                if (value == UInt16.MinValue)
                     return 0;
 
-                if (value == MAX_BIT_NUMBER)
-                    return (Byte)MAX_BIT_NUMBER;
+                if (value == UInt16.MaxValue)
+                    return (Byte)MAX_BIT_NUMBER+1;
 
                 return BitCount(true);
             }
         }
 
-        public Byte BitOff
+        public Byte BitsOff
         {
             get
             {
-                if (value == 0)
-                    return (Byte)MAX_BIT_NUMBER;
-
-                if (value == MAX_BIT_NUMBER)
-                    return 0;
-
-                return BitCount(false);
+                return (byte)((MAX_BIT_NUMBER + 1) - BitsOn);
             }
         }
 
@@ -230,27 +218,21 @@ namespace Steadsoft.BitFields
         {
             get
             {
-                if (value == 0)
+                if (value == UInt32.MinValue)
                     return 0;
 
-                if (value == MAX_BIT_NUMBER)
-                    return (Byte)MAX_BIT_NUMBER;
+                if (value == UInt32.MaxValue)
+                    return (Byte)MAX_BIT_NUMBER+1;
 
                 return BitCount(true);
             }
         }
 
-        public Byte BitOff
+        public Byte BitsOff
         {
             get
             {
-                if (value == 0)
-                    return (Byte)MAX_BIT_NUMBER;
-
-                if (value == MAX_BIT_NUMBER)
-                    return 0;
-
-                return BitCount(false);
+                return (byte)((MAX_BIT_NUMBER + 1) - BitsOn);
             }
         }
 
@@ -336,24 +318,18 @@ namespace Steadsoft.BitFields
                 if (value == 0)
                     return 0;
 
-                if (value == MAX_BIT_NUMBER)
-                    return (Byte)MAX_BIT_NUMBER;
+                if (value == UInt64.MaxValue)
+                    return (Byte)MAX_BIT_NUMBER+1;
 
                 return BitCount(true);
             }
         }
 
-        public Byte BitOff
+        public Byte BitsOff
         {
             get
             {
-                if (value == 0)
-                    return (Byte)MAX_BIT_NUMBER;
-
-                if (value == MAX_BIT_NUMBER)
-                    return 0;
-
-                return BitCount(false);
+                return (byte)((MAX_BIT_NUMBER + 1) - BitsOn);
             }
         }
 
