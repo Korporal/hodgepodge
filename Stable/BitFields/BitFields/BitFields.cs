@@ -173,7 +173,7 @@ namespace Steadsoft.BitFields
     public struct Bit32
     {
         private const UInt32 BIT1 = 1;
-        private const SByte MAX_BIT_NUMBER = 31;
+        private const Byte MAX_BIT_NUMBER = 31;
 
         private UInt32 value;
 
@@ -204,7 +204,7 @@ namespace Steadsoft.BitFields
         {
             StringBuilder text = new StringBuilder();
 
-            for (SByte X = MAX_BIT_NUMBER; X >= 0; X--)
+            for (Byte X = MAX_BIT_NUMBER; X >= 0; X--)
                 text.Append(this[(Byte)X] ? '1' : '0');
 
             return text.ToString();
@@ -241,7 +241,7 @@ namespace Steadsoft.BitFields
         private Byte BitCount(bool State)
         {
             Byte count = 0;
-            for (SByte X = MAX_BIT_NUMBER; X >= 0; X--)
+            for (Byte X = MAX_BIT_NUMBER; X >= 0; X--)
                 if (this[(Byte)X] == State)
                     count++;
             return count;
@@ -259,7 +259,7 @@ namespace Steadsoft.BitFields
     public struct Bit64
     {
         private const UInt64 BIT1 = 1;
-        private const SByte MAX = 63;
+        private const Byte MAX_BIT_NUMBER = 63;
 
         private UInt64 value;
 
@@ -272,14 +272,14 @@ namespace Steadsoft.BitFields
         {
             get
             {
-                if (BitNumber > MAX) throw new ArgumentOutOfRangeException(nameof(BitNumber));
+                if (BitNumber > MAX_BIT_NUMBER) throw new ArgumentOutOfRangeException(nameof(BitNumber));
 
                 UInt64 mask = (UInt64)(BIT1 << BitNumber);
                 return (mask & value) != 0;
             }
             set
             {
-                if (BitNumber > MAX) throw new ArgumentOutOfRangeException(nameof(BitNumber));
+                if (BitNumber > MAX_BIT_NUMBER) throw new ArgumentOutOfRangeException(nameof(BitNumber));
 
                 UInt64 mask = (UInt64)(BIT1 << BitNumber);
                 this.value = value ? (UInt64)(mask | this.value) : (UInt64)(mask ^ this.value);
@@ -290,7 +290,7 @@ namespace Steadsoft.BitFields
         {
             StringBuilder text = new StringBuilder();
 
-            for (SByte X = MAX; X >= 0; X--)
+            for (Byte X = MAX_BIT_NUMBER; X >= 0; X--)
                 text.Append(this[(Byte)X] ? '1' : '0');
 
             return text.ToString();
@@ -304,6 +304,44 @@ namespace Steadsoft.BitFields
 
             return result;
         }
+
+        public Byte BitsOn
+        {
+            get
+            {
+                if (value == 0)
+                    return 0;
+
+                if (value == MAX_BIT_NUMBER)
+                    return (Byte)MAX_BIT_NUMBER;
+
+                return BitCount(true);
+            }
+        }
+
+        public Byte BitOff
+        {
+            get
+            {
+                if (value == 0)
+                    return (Byte)MAX_BIT_NUMBER;
+
+                if (value == MAX_BIT_NUMBER)
+                    return 0;
+
+                return BitCount(false);
+            }
+        }
+
+        private Byte BitCount(bool State)
+        {
+            Byte count = 0;
+            for (Byte X = MAX_BIT_NUMBER; X >= 0; X--)
+                if (this[(Byte)X] == State)
+                    count++;
+            return count;
+        }
+
     }
 
     internal static class Constants
