@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\Steadsoft.BitFields.csproj" />
+    <ProjectReference Include="..\BitFields\Steadsoft.BitFields.csproj" />
   </ItemGroup>
 
 </Project>

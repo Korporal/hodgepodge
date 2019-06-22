@@ -3,12 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApplication", "ConsoleApp19\TestApplication.csproj", "{9E52DA2D-03F2-41B9-96D2-711C0980E901}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApplication", "TestApplication\TestApplication.csproj", "{9E52DA2D-03F2-41B9-96D2-711C0980E901}"
 	ProjectSection(ProjectDependencies) = postProject
 		{DC35E52C-F9DE-4CF7-A9AE-B669D2CEC45C} = {DC35E52C-F9DE-4CF7-A9AE-B669D2CEC45C}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Steadsoft.BitFields", "ClassLibrary1\Steadsoft.BitFields.csproj", "{DC35E52C-F9DE-4CF7-A9AE-B669D2CEC45C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Steadsoft.BitFields", "BitFields\Steadsoft.BitFields.csproj", "{DC35E52C-F9DE-4CF7-A9AE-B669D2CEC45C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
