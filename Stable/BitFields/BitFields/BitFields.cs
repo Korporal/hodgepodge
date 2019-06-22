@@ -3,7 +3,17 @@ using System.Text;
 
 namespace Steadsoft.BitFields
 {
-    public struct Bit8
+
+    public interface IBitField
+    {
+        bool this[Byte BitNumber] { get; set; }
+        Byte BitsOn { get; }
+        Byte BitsOff { get; }
+        Byte BitCount(bool State);
+        void SetAll(bool State);
+        string ToString();
+    }
+    public struct Bit8 : IBitField
     {
         private const Byte BIT1 = 1;
         private const Byte BIT0 = 0;
@@ -67,7 +77,7 @@ namespace Steadsoft.BitFields
             }
         }
 
-        private Byte BitCount(bool State)
+        public Byte BitCount(bool State)
         {
             Byte count = 0;
             for (SByte X = MAX_BIT_NUMBER; X >= 0; X--)
@@ -84,7 +94,7 @@ namespace Steadsoft.BitFields
                 value = 0;
         }
     }
-    public struct Bit16
+    public struct Bit16 : IBitField
     {
         private const UInt16 BIT1 = 1;
         private const SByte MAX_BIT_NUMBER = 15;
@@ -146,7 +156,7 @@ namespace Steadsoft.BitFields
             }
         }
 
-        private Byte BitCount(bool State)
+        public Byte BitCount(bool State)
         {
             Byte count = 0;
             for (SByte X = MAX_BIT_NUMBER; X >= 0; X--)
@@ -174,7 +184,7 @@ namespace Steadsoft.BitFields
 
 
     }
-    public struct Bit32
+    public struct Bit32 : IBitField
     {
         private const UInt32 BIT1 = 1;
         private const Byte MAX_BIT_NUMBER = 31;
@@ -236,7 +246,7 @@ namespace Steadsoft.BitFields
             }
         }
 
-        private Byte BitCount(bool State)
+        public Byte BitCount(bool State)
         {
             Byte count = 0;
             for (Byte X = MAX_BIT_NUMBER; X >= 0; X--)
@@ -262,7 +272,7 @@ namespace Steadsoft.BitFields
             return result;
         }
     }
-    public struct Bit64
+    public struct Bit64 : IBitField
     {
         private const UInt64 BIT1 = 1;
         private const Byte MAX_BIT_NUMBER = 63;
@@ -333,7 +343,7 @@ namespace Steadsoft.BitFields
             }
         }
 
-        private Byte BitCount(bool State)
+        public Byte BitCount(bool State)
         {
             Byte count = 0;
             for (Byte X = MAX_BIT_NUMBER; X >= 0; X--)
@@ -349,8 +359,6 @@ namespace Steadsoft.BitFields
             else
                 value = 0;
         }
-
-
     }
 
     internal static class Constants
