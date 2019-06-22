@@ -81,6 +81,14 @@ namespace Steadsoft.BitFields
                     count++;
             return count;
         }
+
+        public void SetAll(bool State)
+        {
+            if (State)
+                value = Byte.MaxValue;
+            else
+                value = 0;
+        }
     }
     public struct Bit16
     {
@@ -168,6 +176,14 @@ namespace Steadsoft.BitFields
             return result;
         }
 
+        public void SetAll(bool State)
+        {
+            if (State)
+                value = UInt16.MaxValue;
+            else
+                value = 0;
+        }
+
 
     }
     public struct Bit32
@@ -245,6 +261,14 @@ namespace Steadsoft.BitFields
                 if (this[(Byte)X] == State)
                     count++;
             return count;
+        }
+
+        public void SetAll(bool State)
+        {
+            if (State)
+                value = UInt32.MaxValue;
+            else
+                value = 0;
         }
 
         public Bit8 GetByte(Byte ByteNumber)
@@ -341,6 +365,15 @@ namespace Steadsoft.BitFields
                     count++;
             return count;
         }
+
+        public void SetAll(bool State)
+        {
+            if (State)
+                value = UInt64.MaxValue;
+            else
+                value = 0;
+        }
+
 
     }
 

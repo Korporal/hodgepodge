@@ -36,10 +36,6 @@ namespace Steadsoft
             bitsf[4] = false;
 
             bitsd[3] = false;
-
-
         }
-
     }
-
 }
