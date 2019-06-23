@@ -9,9 +9,12 @@ namespace Steadsoft.BitFields
         bool this[Byte BitNumber] { get; set; }
         Byte BitsOn { get; }
         Byte BitsOff { get; }
-        Byte BitCount(bool State);
         void SetAll(bool State);
         string ToString();
+        Byte MaxBitNumber { get; }
+        Byte NumberOfBits { get; }
+        Bit8 GetByte(Byte ByteNumber);
+
     }
     public struct Bit8 : IBitField
     {
@@ -55,36 +58,13 @@ namespace Steadsoft.BitFields
             return text.ToString();
         }
 
-        public Byte BitsOn
-        {
-            get
-            {
-                if (value == Byte.MinValue)
-                    return 0;
+        public Byte BitsOn => BitHelpers.GetBitCount(this, true);
 
-                if (value == Byte.MaxValue)
-                    return (Byte)MAX_BIT_NUMBER+1;
+        public Byte BitsOff => BitHelpers.GetBitCount(this, false);
 
-                return BitCount(true);
-            }
-        }
+        public byte MaxBitNumber => 7;
 
-        public Byte BitsOff
-        {
-            get
-            {
-                return (byte)((MAX_BIT_NUMBER + 1) - BitsOn);
-            }
-        }
-
-        public Byte BitCount(bool State)
-        {
-            Byte count = 0;
-            for (SByte X = MAX_BIT_NUMBER; X >= 0; X--)
-                if (this[(Byte)X] == State)
-                    count++;
-            return count;
-        }
+        public byte NumberOfBits => 8;
 
         public void SetAll(bool State)
         {
@@ -92,6 +72,11 @@ namespace Steadsoft.BitFields
                 value = Byte.MaxValue;
             else
                 value = 0;
+        }
+
+        public Bit8 GetByte(byte ByteNumber)
+        {
+            return this;
         }
     }
     public struct Bit16 : IBitField
@@ -134,36 +119,13 @@ namespace Steadsoft.BitFields
             return text.ToString();
         }
 
-        public Byte BitsOn
-        {
-            get
-            {
-                if (value == UInt16.MinValue)
-                    return 0;
+        public Byte BitsOn => BitHelpers.GetBitCount(this, true);
 
-                if (value == UInt16.MaxValue)
-                    return (Byte)MAX_BIT_NUMBER+1;
+        public Byte BitsOff => BitHelpers.GetBitCount(this, false);
+        public byte MaxBitNumber => throw new NotImplementedException();
 
-                return BitCount(true);
-            }
-        }
+        public byte NumberOfBits => throw new NotImplementedException();
 
-        public Byte BitsOff
-        {
-            get
-            {
-                return (byte)((MAX_BIT_NUMBER + 1) - BitsOn);
-            }
-        }
-
-        public Byte BitCount(bool State)
-        {
-            Byte count = 0;
-            for (SByte X = MAX_BIT_NUMBER; X >= 0; X--)
-                if (this[(Byte)X] == State)
-                    count++;
-            return count;
-        }
 
         public Bit8 GetByte(Byte ByteNumber)
         {
@@ -224,36 +186,14 @@ namespace Steadsoft.BitFields
             return text.ToString();
         }
 
-        public Byte BitsOn
-        {
-            get
-            {
-                if (value == UInt32.MinValue)
-                    return 0;
+        public Byte BitsOn => BitHelpers.GetBitCount(this, true);
 
-                if (value == UInt32.MaxValue)
-                    return (Byte)MAX_BIT_NUMBER+1;
+        public Byte BitsOff => BitHelpers.GetBitCount(this, false);
 
-                return BitCount(true);
-            }
-        }
+        public byte MaxBitNumber => throw new NotImplementedException();
 
-        public Byte BitsOff
-        {
-            get
-            {
-                return (byte)((MAX_BIT_NUMBER + 1) - BitsOn);
-            }
-        }
+        public byte NumberOfBits => throw new NotImplementedException();
 
-        public Byte BitCount(bool State)
-        {
-            Byte count = 0;
-            for (Byte X = MAX_BIT_NUMBER; X >= 0; X--)
-                if (this[(Byte)X] == State)
-                    count++;
-            return count;
-        }
 
         public void SetAll(bool State)
         {
@@ -321,36 +261,14 @@ namespace Steadsoft.BitFields
             return result;
         }
 
-        public Byte BitsOn
-        {
-            get
-            {
-                if (value == 0)
-                    return 0;
+        public Byte BitsOn => BitHelpers.GetBitCount(this, true);
 
-                if (value == UInt64.MaxValue)
-                    return (Byte)MAX_BIT_NUMBER+1;
+        public Byte BitsOff => BitHelpers.GetBitCount(this, false);
 
-                return BitCount(true);
-            }
-        }
+        public byte MaxBitNumber => throw new NotImplementedException();
 
-        public Byte BitsOff
-        {
-            get
-            {
-                return (byte)((MAX_BIT_NUMBER + 1) - BitsOn);
-            }
-        }
+        public byte NumberOfBits => throw new NotImplementedException();
 
-        public Byte BitCount(bool State)
-        {
-            Byte count = 0;
-            for (Byte X = MAX_BIT_NUMBER; X >= 0; X--)
-                if (this[(Byte)X] == State)
-                    count++;
-            return count;
-        }
 
         public void SetAll(bool State)
         {
@@ -358,6 +276,19 @@ namespace Steadsoft.BitFields
                 value = UInt64.MaxValue;
             else
                 value = 0;
+        }
+    }
+
+    public static class BitHelpers
+    {
+        public static Byte GetBitCount(IBitField BitField, bool State)
+        {
+            Byte count = 0;
+            for (Byte X = 0; X <= BitField.MaxBitNumber; X++)
+                if (BitField[(Byte)X] == State)
+                    count++;
+            return count;
+
         }
     }
 
